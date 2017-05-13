@@ -1,6 +1,6 @@
 # react-toolbox-example
 
-### Getting Started
-1. Clone this repository
-2. Run `npm install && npm start`
-3. Visit `0.0.0.0:8080` in your browser
+### Давайте начинать!!!
+1. Клонируем репозиторий (если кому он вообще нужен)
+2. В ком. строке `npm install && npm start`
+3. Вводим `http://localhost:8080` в своём браузере
