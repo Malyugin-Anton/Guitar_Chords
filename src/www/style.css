@@ -1,0 +1,76 @@
+/*....................................................*/
+/*Времени в обрез поэтому пишу как школьник, извиняйте*/
+/*....................................................*/
+
+* { margin: 0; padding: 0; }
+
+body {
+  font-family: Roboto;
+}
+
+/*//////HEADER//////*/
+.header {
+  height: 500px;
+  background: #009688;
+}
+
+.header__text {
+  text-align: center;
+  color: #fff;
+  padding-top: 11rem;
+}
+
+.header__text h1 {
+  font-size: 3rem;
+}
+/*.........HEADER............*/
+
+/*SECTION TRANSP*/
+
+.transp {
+  padding: 1rem 3rem;
+  background: #f7f7f7;
+}
+
+.transp h2 {
+  text-align: center;
+  font-size: 3rem;
+}
+
+.transp p {
+  text-align: center;
+}
+
+.transp__inner {
+  margin-top: 20px;
+  display: flex;
+  flex-direction: row;
+}
+
+.transp__redactor  {
+  flex-grow: 1;
+  margin-right: 50px;
+}
+.trans__akkords {
+  flex-grow: 3;
+}
+
+.textarea {
+    width: 100%;
+    resize: none;
+    font-size: 1.2rem;
+    border: none;
+    font-weight: 300;
+    margin-bottom: 20px;
+    padding: 20px;
+}
+
+.textarea:focus {
+    outline: 0;
+}
+
+.transp__redactor-button {
+  text-align: center;
+}
+
+/*..........SECTION TRANSP..............*/
