@@ -115,11 +115,17 @@ section {
 /*..........PAGE SONGWRITER..............*/
 .songwriter {
   display: flex;
-  flex-direction: column;
+  flex-direction: row;
   height: 100%;
 }
 
 .sidebar {
   width: 30%;
   height: 100%;
+  background: rgba(243, 243, 243, 0.5);
+  flex: 1;
+}
+
+.main_song {
+  flex: 3;
 }

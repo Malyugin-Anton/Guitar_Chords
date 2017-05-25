@@ -26,9 +26,6 @@ function getShortName (name) {
 
 function changeChord (el, tone) {
   let chord_name = el, minor = '', new_tone = 0;
-
-  console.log('Вход ' + el + ' == ' + el[el.length - 1]);
-
   if (el[el.length - 1] === 'm') {
     chord_name = getShortName(el);
     minor = 'm';
@@ -42,8 +39,6 @@ function changeChord (el, tone) {
   }
   for (let i = 0; i < obj_akkords.length; i++) {
     if (obj_akkords[i].value === new_tone) {
-      console.log('new_tone', new_tone);
-      console.log('Выход', obj_akkords[i].name + minor);
       return obj_akkords[i].name + minor;
     }
   }
@@ -78,7 +73,6 @@ class SliderTone extends React.Component {
   };
 
   render () {
-    //const val_tone = this.props.click ? this.props.tone : this.state.value;
     const styles = {
       maxWidth: '600px',
       margin: '0 auto'
