@@ -4,11 +4,17 @@
 
 * { margin: 0; padding: 0; }
 
+html,
+body,
+#app {
+  height: 100%
+}
+
 body {
   font-family: Roboto;
 }
 
-/*//////HEADER//////*/
+/*.........HEADER............*/
 .header {
   height: 500px;
   background: #009688;
@@ -23,46 +29,39 @@ body {
 .header__text h1 {
   font-size: 3rem;
 }
-/*.........HEADER............*/
 
-/*SECTION TRANSP*/
 
-.transp {
-  padding: 1rem 3rem;
-  background: #f7f7f7;
+/*..........SECTION INPUT..............*/
+
+.none {
+  display: none;
 }
 
-.transp h2 {
-  text-align: center;
+section {
+  padding: 1rem 0;
+}
+.section__input h2 {
   font-size: 3rem;
 }
-
-.transp p {
+.section__input h2, p {
   text-align: center;
-}
-
-.transp__inner {
-  margin-top: 20px;
-  display: flex;
-  flex-direction: row;
-}
-
-.transp__redactor  {
-  flex-grow: 1;
-  margin-right: 50px;
-}
-.trans__akkords {
-  flex-grow: 3;
+  padding-bottom: 1rem;
 }
 
 .textarea {
-    width: 100%;
-    resize: none;
-    font-size: 1.2rem;
-    border: none;
-    font-weight: 300;
-    margin-bottom: 20px;
-    padding: 20px;
+  width: 100%;
+  display: block;
+  margin: 0 auto;
+  max-width: 600px;
+  resize: none;
+  font-size: 1.2rem;
+  border: none;
+  font-weight: 300;
+  margin-bottom: 20px;
+  padding: 20px;
+  -webkit-box-shadow: 0px 0px 15px 0px rgba(0,0,0,0.5);
+  -moz-box-shadow: 0px 0px 15px 0px rgba(0,0,0,0.5);
+  box-shadow: 0px 0px 15px 0px rgba(0,0,0,0.5);
 }
 
 .textarea:focus {
@@ -73,4 +72,54 @@ body {
   text-align: center;
 }
 
-/*..........SECTION TRANSP..............*/
+/*..........SECTION OUTPUT..............*/
+
+.section__output-сhords {
+  padding-top: 1rem;
+}
+
+.section__output-сhords h3 {
+  text-align: center;
+  margin: 1rem 0;
+}
+
+.akkord__list {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-around;
+  width: 80%;
+  margin: 0 auto;
+}
+
+.akkord__list li {
+  padding: 0 1rem;
+  list-style: none;
+  width: 10rem;
+}
+
+.akkord__list li p {
+  padding-bottom: 0;
+  font-weight: bold;
+  font-size: 2rem;
+}
+
+.akkord__list li img {
+  width: 100%;
+}
+
+.section__output-button {
+  margin: 1rem 0;
+  text-align: center;
+}
+
+/*..........PAGE SONGWRITER..............*/
+.songwriter {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+}
+
+.sidebar {
+  width: 30%;
+  height: 100%;
+}
