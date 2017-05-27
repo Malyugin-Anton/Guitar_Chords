@@ -5,7 +5,7 @@ import { Provider } from 'react-redux';
 import App from './components/App';
 import reducer from './reducers';
 
-//import Songwriter from './components/Songwriter';
+import Songwriter from './components/Songwriter';
 
 const store = createStore(reducer);
 

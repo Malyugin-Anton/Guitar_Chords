@@ -1,7 +1,7 @@
 const buttonClick = (state = false, action) => {
   switch (action.type) {
     case 'CLICK':
-      return true;
+      return action.value;
     default:
       return state;
   }

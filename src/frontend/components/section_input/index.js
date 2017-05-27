@@ -47,10 +47,11 @@ class SectionInput extends React.Component {
   };
   state = {
     text: '',
-    chords_list: []
+    chords_list: [],
+    click_ok: false
   };
 
-  hangleClick = () => {
+  hangleClickGo = () => {
     const str = this.state.text;
     //Получаем массив аккордов
     const newArrAkkords = str.match(
@@ -58,11 +59,24 @@ class SectionInput extends React.Component {
     );
     //Фильтруем их чтобы не повторялись
     const unique_arr = unique(newArrAkkords);
-    this.setState({ chords_list: unique_arr });
+    console.log('unique_arr  ', unique_arr);
+    this.setState({
+      chords_list: unique_arr,
+      click_ok: !this.state.click_ok
+    });
     //Заносим массив в store
     this.props.dispatch(addAkkords(unique_arr));
-    this.props.dispatch(addClick());
+    this.props.dispatch(addClick(true));
     this.props.dispatch(addTone(getTone([unique_arr[0]])));
+  };
+
+  hangleClickClear = () => {
+    this.setState({
+      click_ok: !this.state.click_ok,
+      text: ''
+    });
+    this.props.dispatch(addClick(false));
+    this.props.dispatch(addAkkords(this.state.chords_list));
   };
 
   handleTextChange = event => {
@@ -70,22 +84,37 @@ class SectionInput extends React.Component {
   };
 
   render () {
-    console.log('Props', this.props.akkords);
-    console.log('State', this.state.chords_list);
-    console.log('TEXT', this.state.text);
-
     let new_text = this.state.text;
     let reg_old = '', reg_new;
     for (let i = 0; i < this.state.chords_list.length; i++) {
       reg_old = this.state.chords_list[i];
       reg_new = this.props.akkords[i];
 
-      new_text = this.state.text.replace(
+      new_text = new_text.replace(
         new RegExp('(' + reg_old + ')', 'g'),
         reg_new
       );
     }
-    console.log('NEW TEXT', new_text);
+    let button = null;
+    if (!this.state.click_ok) {
+      button = (
+        <Button
+          label="Готово"
+          raised
+          className="transp__button"
+          onClick={this.hangleClickGo}
+        />
+      );
+    } else {
+      button = (
+        <Button
+          label="Очистить"
+          raised
+          className="transp__button"
+          onClick={this.hangleClickClear}
+        />
+      );
+    }
     return (
       <section className="section__input">
         <h2>Попробуй</h2>
@@ -98,12 +127,7 @@ class SectionInput extends React.Component {
           onChange={this.handleTextChange}
         />
         <div className="transp__redactor-button">
-          <Button
-            label="Готово"
-            raised
-            className="transp__button"
-            onClick={this.hangleClick}
-          />
+          {button}
         </div>
       </section>
     );

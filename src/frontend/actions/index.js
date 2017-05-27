@@ -6,6 +6,7 @@ export const addTone = value => ({
   type: 'TONE',
   value
 });
-export const addClick = () => ({
-  type: 'CLICK'
+export const addClick = value => ({
+  type: 'CLICK',
+  value
 });

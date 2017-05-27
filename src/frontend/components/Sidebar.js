@@ -41,7 +41,7 @@ class Sidebar extends React.Component {
         <List selectable ripple>
           <ListSubHeader caption="Super APP" />
           <ListDivider />
-          <ListItem selectable caption="Home" leftIcon="home" />
+          <ListItem selectable caption="Главная" leftIcon="home" />
           <ListDivider />
           <ListSubHeader caption="Мои песни" />
           {solg_list.map(item => {
