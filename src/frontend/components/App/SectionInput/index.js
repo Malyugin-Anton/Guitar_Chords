@@ -2,7 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import { Button } from 'react-toolbox/lib/button';
 import { connect } from 'react-redux';
-import { addAkkords, addClick, addTone } from '../../actions/';
+import { addAkkords, addClick, addTone } from '../../../actions/';
 
 const arr_major = [
   { name: 'C', value: 1 },

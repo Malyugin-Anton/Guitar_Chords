@@ -2,7 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import Slider from 'react-toolbox/lib/slider';
 import { connect } from 'react-redux';
-import { addTone, addAkkords } from '../../actions/';
+import { addTone, addAkkords } from '../../../../actions/';
 
 const obj_akkords = [
   { name: 'C', value: 1 },

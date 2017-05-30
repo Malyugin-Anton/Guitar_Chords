@@ -1,6 +1,6 @@
 import React from 'react';
-import Sidebar from './Sidebar';
-import MainSong from './MainSong';
+import Sidebar from './Sidebar/';
+import MainSong from './MainSong/';
 
 class Songwriter extends React.Component {
   render () {

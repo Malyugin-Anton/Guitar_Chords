@@ -2,18 +2,27 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import { createStore } from 'redux';
 import { Provider } from 'react-redux';
-import App from './components/App';
 import reducer from './reducers';
+import { BrowserRouter, Route, Switch } from 'react-router-dom';
 
-import Songwriter from './components/Songwriter';
+//Components
+import App from './components/App/';
+import Songwriter from './components/Songwriter/';
+import Login from './components/Login/';
+import Registration from './components/Registration/';
 
 const store = createStore(reducer);
 
 ReactDOM.render(
   <Provider store={store}>
-    <App />
+    <BrowserRouter>
+      <Switch>
+        <Route exact path="/" component={App} />
+        <Route path="/list_song" component={Songwriter} />
+        <Route path="/login" component={Login} />
+        <Route path="/registration" component={Registration} />
+      </Switch>
+    </BrowserRouter>
   </Provider>,
   document.getElementById('app')
 );
-
-// ReactDOM.render(<Songwriter />, document.getElementById('app'));

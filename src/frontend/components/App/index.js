@@ -1,7 +1,7 @@
 import React from 'react';
-import Header from './header/';
-import SectionInput from './section_input/';
-import SectionOutput from './section_output/';
+import Header from './Header/';
+import SectionInput from './SectionInput/';
+import SectionOutput from './SectionOutput/';
 import { connect } from 'react-redux';
 
 class App extends React.Component {

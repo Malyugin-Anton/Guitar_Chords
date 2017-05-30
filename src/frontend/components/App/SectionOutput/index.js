@@ -1,6 +1,6 @@
 import React from 'react';
-import SliderTone from './slider_tone';
-import AkkordsList from './akkords_list';
+import SliderTone from './SliderTone/';
+import AkkordsList from './AkkordsList/';
 import { connect } from 'react-redux';
 
 class SectionAkk extends React.Component {

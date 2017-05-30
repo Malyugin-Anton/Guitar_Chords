@@ -10,11 +10,14 @@
     "npm": ">=4.0.1"
   },
   "dependencies": {
+    "particles.js": "^2.0.0",
     "prop-types": "^15.5.10",
     "react": "^15.5.10",
     "react-addons-css-transition-group": "^15.4.2",
     "react-dom": "^15.4.2",
     "react-redux": "^5.0.5",
+    "react-router": "^4.1.1",
+    "react-router-dom": "^4.1.1",
     "react-toolbox": "^2.0.0-beta.5",
     "redux": "^3.6.0"
   },

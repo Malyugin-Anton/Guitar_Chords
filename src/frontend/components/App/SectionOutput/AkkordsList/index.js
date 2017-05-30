@@ -2,6 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import { Button } from 'react-toolbox/lib/button';
+import Dialog from 'react-toolbox/lib/dialog';
 
 class AkkordsList extends React.Component {
   static propTypes = {
@@ -10,6 +11,19 @@ class AkkordsList extends React.Component {
     dispatch: PropTypes.func,
     tone: PropTypes.number
   };
+
+  state = {
+    active: false
+  };
+
+  hangleClick = () => {
+    this.setState({ active: !this.state.active });
+  };
+
+  actions = [
+    { label: 'Отмена', onClick: this.hangleClick, icon: 'cancel' },
+    { label: 'Войти', onClick: this.hangleClick, icon: 'perm_identity' }
+  ];
 
   render () {
     let name_chords = '';
@@ -29,12 +43,23 @@ class AkkordsList extends React.Component {
         <ul className="akkord__list">{akkordsList}</ul>
         <div className="section__output-button">
           <Button
-            icon="done"
+            icon="add"
             label="Сохранить"
             raised
             className="transp__button"
             onClick={this.hangleClick}
           />
+          <Dialog
+            actions={this.actions}
+            active={this.state.active}
+            onEscKeyDown={this.hangleClick}
+            onOverlayClick={this.hangleClick}
+            title="Предупреждение"
+          >
+            <p>
+              Для того чтобы сохранить песню нужно войти в систему
+            </p>
+          </Dialog>
         </div>
       </div>
     );
