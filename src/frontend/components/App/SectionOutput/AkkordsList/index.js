@@ -3,6 +3,7 @@ import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import { Button } from 'react-toolbox/lib/button';
 import Dialog from 'react-toolbox/lib/dialog';
+import { Link } from 'react-router-dom';
 
 class AkkordsList extends React.Component {
   static propTypes = {
@@ -19,11 +20,6 @@ class AkkordsList extends React.Component {
   hangleClick = () => {
     this.setState({ active: !this.state.active });
   };
-
-  actions = [
-    { label: 'Отмена', onClick: this.hangleClick, icon: 'cancel' },
-    { label: 'Войти', onClick: this.hangleClick, icon: 'perm_identity' }
-  ];
 
   render () {
     let name_chords = '';
@@ -50,7 +46,6 @@ class AkkordsList extends React.Component {
             onClick={this.hangleClick}
           />
           <Dialog
-            actions={this.actions}
             active={this.state.active}
             onEscKeyDown={this.hangleClick}
             onOverlayClick={this.hangleClick}
@@ -59,6 +54,22 @@ class AkkordsList extends React.Component {
             <p>
               Для того чтобы сохранить песню нужно войти в систему
             </p>
+            <nav className="dialog__nav">
+              <Button
+                icon="cancel"
+                label="Отмена"
+                flat
+                onClick={this.hangleClick}
+              />
+              <Link to="/login">
+                <Button
+                  icon="perm_identity"
+                  label="Войти"
+                  flat
+                  onClick={this.hangleClick}
+                />
+              </Link>
+            </nav>
           </Dialog>
         </div>
       </div>

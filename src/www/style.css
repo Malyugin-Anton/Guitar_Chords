@@ -17,7 +17,8 @@ body {
 /*.........HEADER............*/
 .header {
   height: 500px;
-  background: #009688;
+  background: url(/images/bg_login.jpg);
+  background-size: cover;
 }
 
 .header__text {
@@ -32,6 +33,7 @@ body {
 
 .nav__link {
   text-decoration: none;
+  margin-left: 15px;
 }
 
 
@@ -116,6 +118,10 @@ section {
   text-align: center;
 }
 
+.dialog__nav {
+  text-align: center;
+}
+
 /*..........PAGE SONGWRITER..............*/
 .songwriter {
   display: flex;
@@ -128,10 +134,36 @@ section {
   height: 100%;
   background: rgba(243, 243, 243, 0.5);
   flex: 1;
+  -webkit-box-shadow: 3px 0px 10px 0px rgba(184,184,184,1);
+  -moz-box-shadow: 3px 0px 10px 0px rgba(184,184,184,1);
+  box-shadow: 3px 0px 10px 0px rgba(184,184,184,1);
 }
 
-.main_song {
+.main {
   flex: 3;
+  color: rgba(0,0,0,0.87);
+}
+
+.main__header {
+  padding: 1rem;
+  display: flex;
+  flex-direction: row;
+}
+
+.main__header h1 {
+  flex-basis: 100%;
+}
+
+.main__text, .main__chords {
+  padding: 1rem;
+}
+
+.main__chords h2 {
+  margin-bottom: 1.5rem;
+}
+
+.main__chords .akkord__list {
+  width: 100%;
 }
 
 /*..........PAGE LOGIN..............*/

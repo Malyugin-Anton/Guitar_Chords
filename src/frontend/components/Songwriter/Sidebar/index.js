@@ -5,6 +5,7 @@ import {
   ListSubHeader,
   ListDivider
 } from 'react-toolbox/lib/list';
+import { Link } from 'react-router-dom';
 
 const solg_list = [
   {
@@ -41,7 +42,9 @@ class Sidebar extends React.Component {
         <List selectable ripple>
           <ListSubHeader caption="Super APP" />
           <ListDivider />
-          <ListItem selectable caption="Главная" leftIcon="home" />
+          <Link className="nav__link" to="/">
+            <ListItem selectable caption="Главная" leftIcon="home" />
+          </Link>
           <ListDivider />
           <ListSubHeader caption="Мои песни" />
           {solg_list.map(item => {

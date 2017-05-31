@@ -10,6 +10,7 @@ class Nav extends React.Component {
       <AppBar title="My Project" theme={theme} fixed leftIcon="menu">
         <Navigation type="horizontal">
           <Link className="nav__link" to="/login">Войти</Link>
+          <Link className="nav__link" to="/list_song">Избранное</Link>
         </Navigation>
       </AppBar>
     );
