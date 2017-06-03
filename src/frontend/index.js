@@ -8,8 +8,7 @@ import { BrowserRouter, Route, Switch } from 'react-router-dom';
 //Components
 import App from './components/App/';
 import Songwriter from './components/Songwriter/';
-import Login from './components/Login/';
-import Registration from './components/Registration/';
+import Authorization from './components/Authorization/';
 
 const store = createStore(reducer);
 
@@ -19,8 +18,7 @@ ReactDOM.render(
       <Switch>
         <Route exact path="/" component={App} />
         <Route path="/list_song" component={Songwriter} />
-        <Route path="/login" component={Login} />
-        <Route path="/registration" component={Registration} />
+        <Route path="/authorization" component={Authorization} />
       </Switch>
     </BrowserRouter>
   </Provider>,

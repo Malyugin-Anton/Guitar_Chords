@@ -4,6 +4,7 @@ import { connect } from 'react-redux';
 import { Button } from 'react-toolbox/lib/button';
 import Dialog from 'react-toolbox/lib/dialog';
 import { Link } from 'react-router-dom';
+import Input from 'react-toolbox/lib/input';
 
 class AkkordsList extends React.Component {
   static propTypes = {
@@ -14,11 +15,16 @@ class AkkordsList extends React.Component {
   };
 
   state = {
-    active: false
+    active: false,
+    name: ''
   };
 
   hangleClick = () => {
     this.setState({ active: !this.state.active });
+  };
+
+  handleChange = (name, value) => {
+    this.setState({ ...this.state, [name]: value });
   };
 
   render () {
@@ -45,7 +51,7 @@ class AkkordsList extends React.Component {
             className="transp__button"
             onClick={this.hangleClick}
           />
-          <Dialog
+          {/* <Dialog
             active={this.state.active}
             onEscKeyDown={this.hangleClick}
             onOverlayClick={this.hangleClick}
@@ -70,6 +76,21 @@ class AkkordsList extends React.Component {
                 />
               </Link>
             </nav>
+          </Dialog> */}
+          <Dialog
+            active={this.state.active}
+            onEscKeyDown={this.hangleClick}
+            onOverlayClick={this.hangleClick}
+            title="Добавить в избранное"
+          >
+            <Input
+              type="text"
+              label="Введите название"
+              name="name"
+              value={this.state.name}
+              onChange={this.handleChange.bind(this, 'name')}
+            />
+            <Button label="Добавить" onClick={this.hangleClick} />
           </Dialog>
         </div>
       </div>
