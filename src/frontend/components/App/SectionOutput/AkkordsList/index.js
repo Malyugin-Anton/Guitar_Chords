@@ -6,6 +6,7 @@ import Dialog from 'react-toolbox/lib/dialog';
 // import { Link } from 'react-router-dom';
 import Input from 'react-toolbox/lib/input';
 import $ from 'jquery';
+import { addAkkords, addClick } from '../../../../actions/';
 
 class AkkordsList extends React.Component {
   static propTypes = {
@@ -44,28 +45,9 @@ class AkkordsList extends React.Component {
       },
       dataType: 'json'
     });
-    //-------- GET ---------5935a1c81ad06761ec04228e
-    // $.ajax({
-    //   url:
-    //     'http://dev.0xff.space:8088/api/songs/?criteria={"_id": "5935a1c81ad06761ec04228e"}',
-    //   type: 'GET',
-    //   success: function (data) {
-    //     console.log('data ', data);
-    //   },
-    //   dataType: 'json'
-    // });
-    // --- DELETE ----
-    // $.ajax({
-    //   url:
-    //     'http://dev.0xff.space:8088/api/songs/?citeria={"_id": "59359f1580ae4e614c3f4f34"}',
-    //   type: 'DELETE',
-    //   contentType: 'application/json',
-    //   success: function (data) {
-    //     console.log('data ', data);
-    //   },
-    //   dataType: 'json'
-    // });
     this.setState({ active: !this.state.active });
+    this.props.dispatch(addClick(false));
+    this.props.dispatch(addAkkords(this.state.chords_list));
   };
 
   render () {

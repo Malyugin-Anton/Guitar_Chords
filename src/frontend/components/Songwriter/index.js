@@ -64,14 +64,22 @@ class Songwriter extends React.Component {
             <ListItem selectable caption="Выйти" leftIcon="exit_to_app" />
           </List>
         </div>
-        {songs
-          && <Route
-            path={'/list_song/:songId'}
-            render={({ match }) =>
-              <MainSong
-                song={songs.find(s => s._id === match.params.songId)}
-              />}
-          />}
+        <Route
+          exact
+          path={'/list_song/'}
+          render={() =>
+            <div className="main">
+              <div className="main__root">
+                <h1>Избранное</h1>
+                <p>На данной странице вы можете у видеть свои песни:)</p>
+              </div>
+            </div>}
+        />
+        <Route
+          path={'/list_song/:songId'}
+          render={({ match }) =>
+            <MainSong song={songs.find(s => s._id === match.params.songId)} />}
+        />
       </div>
     );
   }
