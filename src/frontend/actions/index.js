@@ -10,3 +10,7 @@ export const addClick = value => ({
   type: 'CLICK',
   value
 });
+export const addText = text => ({
+  type: 'ADD_TEXT',
+  text
+});

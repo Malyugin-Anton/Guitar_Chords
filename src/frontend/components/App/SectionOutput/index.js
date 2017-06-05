@@ -5,6 +5,7 @@ import { connect } from 'react-redux';
 
 class SectionAkk extends React.Component {
   static propTypes = {
+    addText: React.PropTypes.string,
     akkords: React.PropTypes.array,
     click: React.PropTypes.bool,
     tone: React.PropTypes.number
@@ -24,6 +25,7 @@ class SectionAkk extends React.Component {
           tone={this.props.tone}
           click={this.props.click}
           akkords={this.props.akkords}
+          addText={this.props.addText}
         />
       </section>
     );
@@ -34,7 +36,8 @@ function mapStateToProps (state) {
   return {
     akkords: state.akkords,
     click: state.buttonClick,
-    tone: state.tone
+    tone: state.tone,
+    addText: state.addText
   };
 }
 

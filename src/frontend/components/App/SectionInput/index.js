@@ -2,7 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import { Button } from 'react-toolbox/lib/button';
 import { connect } from 'react-redux';
-import { addAkkords, addClick, addTone } from '../../../actions/';
+import { addAkkords, addClick, addTone, addText } from '../../../actions/';
 
 const arr_major = [
   { name: 'C', value: 1 },
@@ -59,7 +59,6 @@ class SectionInput extends React.Component {
     );
     //Фильтруем их чтобы не повторялись
     const unique_arr = unique(newArrAkkords);
-    console.log('unique_arr  ', unique_arr);
     this.setState({
       chords_list: unique_arr,
       click_ok: !this.state.click_ok
@@ -68,6 +67,7 @@ class SectionInput extends React.Component {
     this.props.dispatch(addAkkords(unique_arr));
     this.props.dispatch(addClick(true));
     this.props.dispatch(addTone(getTone([unique_arr[0]])));
+    this.props.dispatch(addText(this.state.text));
   };
 
   hangleClickClear = () => {
@@ -84,17 +84,19 @@ class SectionInput extends React.Component {
   };
 
   render () {
-    let new_text = this.state.text;
-    let reg_old = '', reg_new;
-    for (let i = 0; i < this.state.chords_list.length; i++) {
-      reg_old = this.state.chords_list[i];
-      reg_new = this.props.akkords[i];
-
-      new_text = new_text.replace(
-        new RegExp('(' + reg_old + ')', 'g'),
-        reg_new
-      );
-    }
+    // let new_text = this.state.text;
+    // let reg_old = '',
+    //   reg_new;
+    // for (let i = 0; i < this.state.chords_list.length; i++) {
+    //   reg_old = this.state.chords_list[i];
+    //   reg_new = this.props.akkords[i];
+    //
+    //   new_text = new_text.replace(
+    //     new RegExp('(' + reg_old + ')', 'g'),
+    //     reg_new
+    //   );
+    // }
+    // this.props.dispatch(addText(new_text));
     let button = null;
     if (!this.state.click_ok) {
       button = (
@@ -123,7 +125,7 @@ class SectionInput extends React.Component {
           className="textarea"
           rows="20"
           placeholder="Вот сюда вводим..."
-          value={new_text}
+          value={this.state.text}
           onChange={this.handleTextChange}
         />
         <div className="transp__redactor-button">

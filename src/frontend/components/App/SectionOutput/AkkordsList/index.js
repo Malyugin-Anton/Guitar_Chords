@@ -3,11 +3,13 @@ import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import { Button } from 'react-toolbox/lib/button';
 import Dialog from 'react-toolbox/lib/dialog';
-import { Link } from 'react-router-dom';
+// import { Link } from 'react-router-dom';
 import Input from 'react-toolbox/lib/input';
+import $ from 'jquery';
 
 class AkkordsList extends React.Component {
   static propTypes = {
+    addText: PropTypes.string,
     akkords: PropTypes.array,
     akkordsList: PropTypes.array,
     dispatch: PropTypes.func,
@@ -25,6 +27,45 @@ class AkkordsList extends React.Component {
 
   handleChange = (name, value) => {
     this.setState({ ...this.state, [name]: value });
+  };
+
+  hangleClickAdd = () => {
+    $.ajax({
+      url: 'http://dev.0xff.space:8088/api/songs/',
+      contentType: 'application/json',
+      type: 'POST',
+      data: JSON.stringify({
+        name: this.state.name,
+        text: this.props.addText,
+        user: '592c336c152b3b18c7d98e83'
+      }),
+      success: function (data) {
+        console.log('data ', data);
+      },
+      dataType: 'json'
+    });
+    //-------- GET ---------5935a1c81ad06761ec04228e
+    // $.ajax({
+    //   url:
+    //     'http://dev.0xff.space:8088/api/songs/?criteria={"_id": "5935a1c81ad06761ec04228e"}',
+    //   type: 'GET',
+    //   success: function (data) {
+    //     console.log('data ', data);
+    //   },
+    //   dataType: 'json'
+    // });
+    // --- DELETE ----
+    // $.ajax({
+    //   url:
+    //     'http://dev.0xff.space:8088/api/songs/?citeria={"_id": "59359f1580ae4e614c3f4f34"}',
+    //   type: 'DELETE',
+    //   contentType: 'application/json',
+    //   success: function (data) {
+    //     console.log('data ', data);
+    //   },
+    //   dataType: 'json'
+    // });
+    this.setState({ active: !this.state.active });
   };
 
   render () {
@@ -90,7 +131,7 @@ class AkkordsList extends React.Component {
               value={this.state.name}
               onChange={this.handleChange.bind(this, 'name')}
             />
-            <Button label="Добавить" onClick={this.hangleClick} />
+            <Button label="Добавить" onClick={this.hangleClickAdd} />
           </Dialog>
         </div>
       </div>
