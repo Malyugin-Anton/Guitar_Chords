@@ -1,5 +1,4 @@
 import React from 'react';
-import PropTypes from 'prop-types';
 import {
   List,
   ListItem,
@@ -7,34 +6,14 @@ import {
   ListDivider
 } from 'react-toolbox/lib/list';
 import { Link } from 'react-router-dom';
-import $ from 'jquery';
 
 class Sidebar extends React.Component {
   static propTypes = {
-    songs: PropTypes.array
-  };
-
-  state = {
-    songs: []
-  };
-
-  componentWillMount = () => {
-    //-------- GET ---------
-    $.ajax({
-      url: 'http://dev.0xff.space:8088/api/songs/',
-      type: 'GET',
-      success: data => {
-        this.setState({
-          songs: data
-        });
-      },
-      dataType: 'json'
-    });
+    songs: React.PropTypes.array
   };
 
   render () {
-    // console.log('PROPS ', this.props.songs);
-    console.log('STATE ', this.state.songs);
+    console.log(this.props.songs);
     return (
       <div className="sidebar">
         <List selectable ripple>
@@ -45,16 +24,18 @@ class Sidebar extends React.Component {
           </Link>
           <ListDivider />
           <ListSubHeader caption="Мои песни" />
-          {this.state.songs.map(item => {
+          {/* {this.state.songs.map(item => {
             return (
-              <ListItem
-                selectable
-                key={item._id}
-                caption={item.name}
-                leftIcon="tab"
-              />
+              <Link key={item.id} to={`/list_song/${item._id}`}>
+                <ListItem
+                  selectable
+                  key={item._id}
+                  caption={item.name}
+                  leftIcon="tab"
+                />
+              </Link>
             );
-          })}
+          })} */}
           <ListDivider />
           <ListItem selectable caption="Выйти" leftIcon="exit_to_app" />
         </List>
