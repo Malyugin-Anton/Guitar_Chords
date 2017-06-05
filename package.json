@@ -10,6 +10,7 @@
     "npm": ">=4.0.1"
   },
   "dependencies": {
+    "jquery": "^3.2.1",
     "particles.js": "^2.0.0",
     "prop-types": "^15.5.10",
     "react": "^15.5.10",
@@ -19,7 +20,8 @@
     "react-router": "^4.1.1",
     "react-router-dom": "^4.1.1",
     "react-toolbox": "^2.0.0-beta.5",
-    "redux": "^3.6.0"
+    "redux": "^3.6.0",
+    "superagent": "^3.5.2"
   },
   "devDependencies": {
     "autoprefixer": "^6.6.1",
