@@ -6,14 +6,14 @@ import Dialog from 'react-toolbox/lib/dialog';
 // import { Link } from 'react-router-dom';
 import Input from 'react-toolbox/lib/input';
 import $ from 'jquery';
-import { addAkkords, addClick } from '../../../../actions/';
+//import { addAkkords, addClick } from '../../../../actions/';
 
 class AkkordsList extends React.Component {
   static propTypes = {
-    addText: PropTypes.string,
     akkords: PropTypes.array,
     akkordsList: PropTypes.array,
     dispatch: PropTypes.func,
+    text: PropTypes.string,
     tone: PropTypes.number
   };
 
@@ -31,13 +31,14 @@ class AkkordsList extends React.Component {
   };
 
   hangleClickAdd = () => {
+    console.log('TEXT ', this.props.text);
     $.ajax({
       url: 'http://dev.0xff.space:8088/api/songs/',
       contentType: 'application/json',
       type: 'POST',
       data: JSON.stringify({
         name: this.state.name,
-        text: this.props.addText,
+        text: this.props.text,
         user: '592c336c152b3b18c7d98e83'
       }),
       success: function (data) {
@@ -46,8 +47,6 @@ class AkkordsList extends React.Component {
       dataType: 'json'
     });
     this.setState({ active: !this.state.active });
-    this.props.dispatch(addClick(false));
-    this.props.dispatch(addAkkords(this.state.chords_list));
   };
 
   render () {
@@ -74,32 +73,6 @@ class AkkordsList extends React.Component {
             className="transp__button"
             onClick={this.hangleClick}
           />
-          {/* <Dialog
-            active={this.state.active}
-            onEscKeyDown={this.hangleClick}
-            onOverlayClick={this.hangleClick}
-            title="Предупреждение"
-          >
-            <p>
-              Для того чтобы сохранить песню нужно войти в систему
-            </p>
-            <nav className="dialog__nav">
-              <Button
-                icon="cancel"
-                label="Отмена"
-                flat
-                onClick={this.hangleClick}
-              />
-              <Link to="/login">
-                <Button
-                  icon="perm_identity"
-                  label="Войти"
-                  flat
-                  onClick={this.hangleClick}
-                />
-              </Link>
-            </nav>
-          </Dialog> */}
           <Dialog
             active={this.state.active}
             onEscKeyDown={this.hangleClick}
@@ -120,16 +93,5 @@ class AkkordsList extends React.Component {
     );
   }
 }
-
-//mapStateToProps - это функция, которая должна возвращать объект.
-//Поля этого объекта станут свойствами компонента
-// function mapStateToProps (state) {
-//   return {
-//     akkords: state.akkords,
-//     tone: state.tone
-//     // click: state.buttonClick
-//   };
-// }
-//export default connect(mapStateToProps, {})(AkkordsList);
 
 export default connect()(AkkordsList);

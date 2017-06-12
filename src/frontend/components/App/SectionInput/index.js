@@ -53,10 +53,9 @@ class SectionInput extends React.Component {
 
   hangleClickGo = () => {
     const str = this.state.text;
+    const regex = /([A-H][b#]?[m]?[\(]?(2|5|6|7|9|11|13|6\/9|7\-5|7\-9|7 \#5|7\#9|7\+5|7\+9|7b5|7b9|7sus2|7sus4|add2|add4|add9|aug|dim|dim 7|m\|maj7|m6|m7|m7b5|m9|m11|m13|maj|maj7|maj9|maj11|maj13|mb5|m|s us|sus2|sus4){0,2}(\/[A-H])?(\))?)(?=\s|\.|\)|-|\/)/g;
     //Получаем массив аккордов
-    const newArrAkkords = str.match(
-      /\b(C#m)|(D#m)|(F#m)|(G#m)|(A#m)|(Cm)|(Dm)|(Em)|(Fm)|(Gm)|(Am)|(Hm)|(C)|(D)|(E)|(F)|(G)|(A)|(H)\b/g
-    );
+    const newArrAkkords = str.match(regex);
     //Фильтруем их чтобы не повторялись
     const unique_arr = unique(newArrAkkords);
     this.setState({

@@ -23,15 +23,15 @@ class SectionAkk extends React.Component {
         />
         <AkkordsList
           tone={this.props.tone}
-          click={this.props.click}
           akkords={this.props.akkords}
-          addText={this.props.addText}
+          text={this.props.addText}
         />
       </section>
     );
   }
 }
-
+//mapStateToProps - это функция, которая должна возвращать объект.
+//Поля этого объекта станут свойствами компонента
 function mapStateToProps (state) {
   return {
     akkords: state.akkords,
