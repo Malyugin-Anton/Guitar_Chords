@@ -3,7 +3,7 @@ import SliderTone from './SliderTone/';
 import AkkordsList from './AkkordsList/';
 import { connect } from 'react-redux';
 
-class SectionAkk extends React.Component {
+class SectionOutput extends React.Component {
   static propTypes = {
     addText: React.PropTypes.string,
     akkords: React.PropTypes.array,
@@ -41,4 +41,4 @@ function mapStateToProps (state) {
   };
 }
 
-export default connect(mapStateToProps, {})(SectionAkk);
+export default connect(mapStateToProps, {})(SectionOutput);

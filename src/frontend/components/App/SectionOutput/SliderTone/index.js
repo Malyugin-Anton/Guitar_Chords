@@ -2,7 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import Slider from 'react-toolbox/lib/slider';
 import { connect } from 'react-redux';
-import { addTone, addAkkords } from '../../../../actions/';
+import { addTone, addAkkords, addText } from '../../../../actions/';
 
 const obj_akkords = [
   { name: 'C', value: 1 },
@@ -25,7 +25,9 @@ function getShortName (name) {
 }
 
 function changeChord (el, tone) {
-  let chord_name = el, minor = '', new_tone = 0;
+  let chord_name = el,
+    minor = '',
+    new_tone = 0;
   if (el[el.length - 1] === 'm') {
     chord_name = getShortName(el);
     minor = 'm';
@@ -60,6 +62,12 @@ class SliderTone extends React.Component {
     tone: 1
   };
 
+  componentWillReceiveProps = () => {
+    const str = 'asdasdasdasd';
+    this.props.dispatch(addText(str));
+    console.log('new text');
+  };
+
   handleChange = (slider, value) => {
     const tone = getTone(this.props.tone, value);
     const new_array = this.props.akkords.map(el => {
@@ -70,6 +78,7 @@ class SliderTone extends React.Component {
     });
     this.props.dispatch(addTone(value));
     this.props.dispatch(addAkkords(new_array));
+    this.props.dispatch(addText('new_array'));
   };
 
   render () {

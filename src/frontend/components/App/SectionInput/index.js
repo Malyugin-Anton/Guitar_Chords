@@ -4,7 +4,7 @@ import { Button } from 'react-toolbox/lib/button';
 import { connect } from 'react-redux';
 import { addAkkords, addClick, addTone, addText } from '../../../actions/';
 
-const arr_major = [
+const obj_akkords = [
   { name: 'C', value: 1 },
   { name: 'C#', value: 2 },
   { name: 'D', value: 3 },
@@ -23,9 +23,9 @@ function getTone (el) {
   const chord = el[0][el.length] === 'm'
     ? el[0].substring(0, el[0].length - 1)
     : el[0];
-  for (let i = 0; i < arr_major.length; i++) {
-    if (arr_major[i].name === chord) {
-      return arr_major[i].value;
+  for (let i = 0; i < obj_akkords.length; i++) {
+    if (obj_akkords[i].name === chord) {
+      return obj_akkords[i].value;
     }
   }
 }
@@ -96,6 +96,8 @@ class SectionInput extends React.Component {
     //   );
     // }
     // this.props.dispatch(addText(new_text));
+    console.log('STORE akkords - ', this.props.akkords);
+    console.log('TEXT-STORE - ', this.props.text);
     let button = null;
     if (!this.state.click_ok) {
       button = (
