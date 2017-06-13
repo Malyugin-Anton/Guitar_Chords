@@ -6,6 +6,7 @@ import { connect } from 'react-redux';
 
 class App extends React.Component {
   static propTypes = {
+    addText: React.PropTypes.string,
     akkords: React.PropTypes.array
   };
 
@@ -13,7 +14,7 @@ class App extends React.Component {
     return (
       <div>
         <Header />
-        <SectionInput akkords={this.props.akkords} />
+        <SectionInput akkords={this.props.akkords} text={this.props.addText} />
         <SectionOutput />
       </div>
     );
@@ -22,6 +23,7 @@ class App extends React.Component {
 
 function mapStateToProps (state) {
   return {
+    addText: state.addText,
     akkords: state.akkords
   };
 }

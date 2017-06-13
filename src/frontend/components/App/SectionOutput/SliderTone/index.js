@@ -55,6 +55,7 @@ class SliderTone extends React.Component {
     akkords: PropTypes.array,
     click: PropTypes.bool,
     dispatch: PropTypes.func,
+    text: PropTypes.string,
     tone: PropTypes.number
   };
 
@@ -62,13 +63,12 @@ class SliderTone extends React.Component {
     tone: 1
   };
 
-  componentWillReceiveProps = () => {
-    const str = 'asdasdasdasd';
-    this.props.dispatch(addText(str));
-    console.log('new text');
-  };
-
   handleChange = (slider, value) => {
+    const regex = /([A-H][b#]?[m]?[\(]?(2|5|6|7|9|11|13|6\/9|7\-5|7\-9|7 \#5|7\#9|7\+5|7\+9|7b5|7b9|7sus2|7sus4|add2|add4|add9|aug|dim|dim 7|m\|maj7|m6|m7|m7b5|m9|m11|m13|maj|maj7|maj9|maj11|maj13|mb5|m|s us|sus2|sus4){0,2}(\/[A-H])?(\))?)(?=\s|\.|\)|-|\/)/g;
+
+    let new_text = this.props.text;
+    const old_chords = this.props.akkords;
+
     const tone = getTone(this.props.tone, value);
     const new_array = this.props.akkords.map(el => {
       return changeChord(el, tone);
@@ -78,7 +78,21 @@ class SliderTone extends React.Component {
     });
     this.props.dispatch(addTone(value));
     this.props.dispatch(addAkkords(new_array));
-    this.props.dispatch(addText('new_array'));
+
+    console.log('OLD -- ', old_chords);
+    console.log('NEW - ', new_array);
+
+    //Запихать цикл внутрь replace
+
+    new_text = new_text.replace(regex, function (item) {
+      for (let i = 0; i < old_chords.length; i++) {
+        if (item === old_chords[i]) {
+          return new_array[i];
+        }
+      }
+    });
+
+    this.props.dispatch(addText(new_text));
   };
 
   render () {

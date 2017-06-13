@@ -20,6 +20,7 @@ class SectionOutput extends React.Component {
           tone={this.props.tone}
           click={this.props.click}
           akkords={this.props.akkords}
+          text={this.props.addText}
         />
         <AkkordsList
           tone={this.props.tone}

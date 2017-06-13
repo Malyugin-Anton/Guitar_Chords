@@ -52,7 +52,7 @@ class SectionInput extends React.Component {
   };
 
   hangleClickGo = () => {
-    const str = this.state.text;
+    const str = this.props.text;
     const regex = /([A-H][b#]?[m]?[\(]?(2|5|6|7|9|11|13|6\/9|7\-5|7\-9|7 \#5|7\#9|7\+5|7\+9|7b5|7b9|7sus2|7sus4|add2|add4|add9|aug|dim|dim 7|m\|maj7|m6|m7|m7b5|m9|m11|m13|maj|maj7|maj9|maj11|maj13|mb5|m|s us|sus2|sus4){0,2}(\/[A-H])?(\))?)(?=\s|\.|\)|-|\/)/g;
     //Получаем массив аккордов
     const newArrAkkords = str.match(regex);
@@ -66,7 +66,7 @@ class SectionInput extends React.Component {
     this.props.dispatch(addAkkords(unique_arr));
     this.props.dispatch(addClick(true));
     this.props.dispatch(addTone(getTone([unique_arr[0]])));
-    this.props.dispatch(addText(this.state.text));
+    //this.props.dispatch(addText(this.state.text));
   };
 
   hangleClickClear = () => {
@@ -79,25 +79,11 @@ class SectionInput extends React.Component {
   };
 
   handleTextChange = event => {
-    this.setState({ text: event.target.value });
+    //this.setState({ text: event.target.value });
+    this.props.dispatch(addText(event.target.value));
   };
 
   render () {
-    // let new_text = this.state.text;
-    // let reg_old = '',
-    //   reg_new;
-    // for (let i = 0; i < this.state.chords_list.length; i++) {
-    //   reg_old = this.state.chords_list[i];
-    //   reg_new = this.props.akkords[i];
-    //
-    //   new_text = new_text.replace(
-    //     new RegExp('(' + reg_old + ')', 'g'),
-    //     reg_new
-    //   );
-    // }
-    // this.props.dispatch(addText(new_text));
-    console.log('STORE akkords - ', this.props.akkords);
-    console.log('TEXT-STORE - ', this.props.text);
     let button = null;
     if (!this.state.click_ok) {
       button = (
@@ -122,11 +108,12 @@ class SectionInput extends React.Component {
       <section className="section__input">
         <h2>Попробуй</h2>
         <p>Введите текст песни или аккорды в текстовое поле</p>
+        <p>Вступление: Am | C | G | G } 4 раза</p>
         <textarea
           className="textarea"
           rows="20"
           placeholder="Вот сюда вводим..."
-          value={this.state.text}
+          value={this.props.text}
           onChange={this.handleTextChange}
         />
         <div className="transp__redactor-button">
