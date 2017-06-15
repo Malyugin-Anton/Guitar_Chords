@@ -34,6 +34,9 @@ body {
 
 .nav__link {
   text-decoration: none;
+}
+
+.nav__link-nav {
   margin-left: 15px;
 }
 
@@ -183,6 +186,10 @@ section {
 
 .main__chords .akkord__list {
   width: 100%;
+}
+
+.dialog__text {
+  text-align: center !important;
 }
 
 /*..........PAGE LOGIN..............*/

@@ -19,8 +19,21 @@ class Songwriter extends React.Component {
     songs: []
   };
 
-  componentWillMount = () => {
+  componentDidMount = () => {
     //-------- GET ---------
+    $.ajax({
+      url: 'http://localhost:3000/api/songs/',
+      type: 'GET',
+      success: data => {
+        this.setState({
+          songs: data
+        });
+      },
+      dataType: 'json'
+    });
+  };
+
+  componentWillReceiveProps = () => {
     $.ajax({
       url: 'http://localhost:3000/api/songs/',
       type: 'GET',
@@ -44,12 +57,19 @@ class Songwriter extends React.Component {
             <Link className="nav__link" to="/">
               <ListItem selectable caption="Главная" leftIcon="home" />
             </Link>
+            <Link className="nav__link" to="/list_song">
+              <ListItem selectable caption="Список" leftIcon="list" />
+            </Link>
             <ListDivider />
             <ListSubHeader caption="Мои песни" />
 
             {this.state.songs.map(item => {
               return (
-                <Link key={item._id} to={`/list_song/${item._id}`}>
+                <Link
+                  className="nav__link"
+                  key={item._id}
+                  to={`/list_song/${item._id}`}
+                >
                   <ListItem
                     selectable
                     key={item._id}
@@ -71,7 +91,10 @@ class Songwriter extends React.Component {
             <div className="main">
               <div className="main__root">
                 <h1>Избранное</h1>
-                <p>На данной странице вы можете у видеть свои песни:)</p>
+                <p>
+                  На данной странице вы можете просматривать и удалять свои
+                  песни:)
+                </p>
               </div>
             </div>}
         />

@@ -1,20 +1,32 @@
 import React from 'react';
-import { Button } from 'react-toolbox/lib/button';
+import { Button, Dialog } from 'react-toolbox';
+import { Link } from 'react-router-dom';
 import $ from 'jquery';
 
 class MainSong extends React.Component {
   static propTypes = {
     song: React.PropTypes.object
   };
+
+  state = {
+    show: false,
+    delete: false
+  };
+
+  hangleClickShow = () => {
+    this.setState({
+      show: !this.state.show
+    });
+  };
+
   //{"_id": " + song._id + "}'
   hangleClickDelete = () => {
     const { song } = this.props;
-    console.log('DELETE - ', song._id);
     $.ajax({
       url: `http://localhost:3000/api/songs/?criteria={"_id": "${song._id}"}`,
       type: 'DELETE',
       contentType: 'application/json',
-      success: function (data) {
+      success: data => {
         console.log('data ', data);
       },
       dataType: 'json'
@@ -39,12 +51,21 @@ class MainSong extends React.Component {
       <div className="main">
         <div className="main__header">
           <h1>{song.name}</h1>
-          <Button
-            icon="delete"
-            floating
-            mini
-            onClick={this.hangleClickDelete}
-          />
+          <Button icon="delete" floating mini onClick={this.hangleClickShow} />
+          <div className="dialog__text">
+            <Dialog
+              active={this.state.show}
+              onEscKeyDown={this.hangleClickShow}
+              onOverlayClick={this.hangleClickShow}
+              title="Предупреждение"
+            >
+              <p>Вы действительно хотите удалить песню?</p>
+              <Link to="/list_song/">
+                <Button label="Да" onClick={this.hangleClickDelete} />
+              </Link>
+              <Button label="Нет" onClick={this.hangleClickShow} />
+            </Dialog>
+          </div>
         </div>
         <div className="main__text">
           <pre>
