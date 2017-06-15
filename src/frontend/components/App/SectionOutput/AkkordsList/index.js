@@ -1,8 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
-import { Button, Snackbar } from 'react-toolbox/lib/button';
-import Dialog from 'react-toolbox/lib/dialog';
+import { Button, Snackbar, Dialog } from 'react-toolbox';
 // import { Link } from 'react-router-dom';
 import Input from 'react-toolbox/lib/input';
 import $ from 'jquery';
@@ -23,17 +22,15 @@ class AkkordsList extends React.Component {
     snackbarClick: false
   };
 
-  handleSnackbarClick = (event, instance) => {
-    console.log('handleSnackbarClick', event, instance);
-    this.setState({ active: false });
+  handleSnackbarClick = () => {
+    this.setState({ snackbarClick: false });
   };
 
-  handleSnackbarTimeout = (event, instance) => {
-    console.log('handleSnackbarClick', event, instance);
-    this.setState({ active: false });
+  handleSnackbarTimeout = () => {
+    this.setState({ snackbarClick: false });
   };
 
-  hangleClick = () => {
+  hangleClickShow = () => {
     this.setState({ active: !this.state.active });
   };
 
@@ -42,8 +39,6 @@ class AkkordsList extends React.Component {
   };
 
   hangleClickAdd = () => {
-    console.log('TEXT ', this.props.text);
-    console.log('CHORDS ', this.props.akkords);
     $.ajax({
       url: 'http://localhost:3000/api/songs/',
       contentType: 'application/json',
@@ -57,7 +52,7 @@ class AkkordsList extends React.Component {
       dataType: 'json'
     });
     this.setState({ active: !this.state.active });
-    this.setState({ snackbarClick: !this.state.active });
+    this.setState({ snackbarClick: !this.state.snackbarClick });
   };
 
   render () {
@@ -82,12 +77,12 @@ class AkkordsList extends React.Component {
             label="Сохранить"
             raised
             className="transp__button"
-            onClick={this.hangleClick}
+            onClick={this.hangleClickShow}
           />
           <Dialog
             active={this.state.active}
-            onEscKeyDown={this.hangleClick}
-            onOverlayClick={this.hangleClick}
+            onEscKeyDown={this.hangleClickShow}
+            onOverlayClick={this.hangleClickShow}
             title="Добавить в избранное"
           >
             <Input
@@ -99,16 +94,15 @@ class AkkordsList extends React.Component {
             />
             <Button label="Добавить" onClick={this.hangleClickAdd} />
           </Dialog>
-          <Snackbar
-            action="Dismiss"
-            active={this.state.active}
-            label="Snackbar action cancel"
-            timeout={2000}
-            onClick={this.handleSnackbarClick}
-            onTimeout={this.handleSnackbarTimeout}
-            type="cancel"
-          />
         </div>
+        <Snackbar
+          active={this.state.snackbarClick}
+          label="Песня успешно добавлена!"
+          timeout={2000}
+          onClick={this.handleSnackbarClick}
+          onTimeout={this.handleSnackbarTimeout}
+          type="accept"
+        />
       </div>
     );
   }

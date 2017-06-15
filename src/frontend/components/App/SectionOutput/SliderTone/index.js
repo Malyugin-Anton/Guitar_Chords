@@ -79,11 +79,6 @@ class SliderTone extends React.Component {
     this.props.dispatch(addTone(value));
     this.props.dispatch(addAkkords(new_array));
 
-    console.log('OLD -- ', old_chords);
-    console.log('NEW - ', new_array);
-
-    //Запихать цикл внутрь replace
-
     new_text = new_text.replace(regex, function (item) {
       for (let i = 0; i < old_chords.length; i++) {
         if (item === old_chords[i]) {
@@ -117,13 +112,5 @@ class SliderTone extends React.Component {
     );
   }
 }
-
-// function mapStateToProps (state) {
-//   return {
-//     akkords: state.akkords
-//     // tone: state.tone
-//     // click: state.buttonClick
-//   };
-// }
 
 export default connect()(SliderTone);
