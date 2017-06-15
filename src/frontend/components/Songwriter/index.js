@@ -22,7 +22,7 @@ class Songwriter extends React.Component {
   componentWillMount = () => {
     //-------- GET ---------
     $.ajax({
-      url: 'http://dev.0xff.space:8088/api/songs/',
+      url: 'http://localhost:3000/api/songs/',
       type: 'GET',
       success: data => {
         this.setState({

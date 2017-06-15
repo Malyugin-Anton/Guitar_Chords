@@ -6,11 +6,12 @@ class MainSong extends React.Component {
   static propTypes = {
     song: React.PropTypes.object
   };
-
+  //{"_id": " + song._id + "}'
   hangleClickDelete = () => {
+    const { song } = this.props;
+    console.log('DELETE - ', song._id);
     $.ajax({
-      url:
-        'http://dev.0xff.space:8088/api/songs/?citeria={"_id": " + song._id + "}',
+      url: `http://localhost:3000/api/songs/?criteria={"_id": "${song._id}"}`,
       type: 'DELETE',
       contentType: 'application/json',
       success: function (data) {
@@ -22,7 +23,18 @@ class MainSong extends React.Component {
 
   render () {
     const { song } = this.props;
-    console.log(song.name);
+
+    let name_chords = '';
+    const akkordsList = song.chords.map((item, idx) => {
+      name_chords = item.replace('#', 'd');
+      return (
+        <li key={idx}>
+          <p>{item}</p>
+          <img src={'/images/akkords/' + name_chords + '.png'} />
+        </li>
+      );
+    });
+
     return (
       <div className="main">
         <div className="main__header">
@@ -39,9 +51,10 @@ class MainSong extends React.Component {
             {song.text}
           </pre>
         </div>
-        {/* <div className="main__chords">
+        <div className="main__chords">
           <h2>Аккорды</h2>
-        </div> */}
+          <ul className="akkord__list">{akkordsList}</ul>
+        </div>
       </div>
     );
   }

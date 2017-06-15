@@ -1,6 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import { Button } from 'react-toolbox/lib/button';
+import { Button, IconButton } from 'react-toolbox/lib/button';
+import Dialog from 'react-toolbox/lib/dialog';
 import { connect } from 'react-redux';
 import { addAkkords, addClick, addTone, addText } from '../../../actions/';
 
@@ -48,7 +49,12 @@ class SectionInput extends React.Component {
   state = {
     text: '',
     chords_list: [],
-    click_ok: false
+    click_ok: false,
+    active: false
+  };
+
+  handleToggle = () => {
+    this.setState({ active: !this.state.active });
   };
 
   hangleClickGo = () => {
@@ -107,8 +113,44 @@ class SectionInput extends React.Component {
     return (
       <section className="section__input">
         <h2>Попробуй</h2>
-        <p>Введите текст песни или аккорды в текстовое поле</p>
-        <p>Вступление: Am | C | G | G } 4 раза</p>
+        <p>
+          Введите текст песни или аккорды в текстовое поле
+          <span className="button__help">
+            <IconButton
+              icon="help_outline"
+              floating
+              onClick={this.handleToggle}
+            />
+          </span>
+        </p>
+        <Dialog
+          actions={this.actions}
+          active={this.state.active}
+          onEscKeyDown={this.handleToggle}
+          onOverlayClick={this.handleToggle}
+          title="Привет текста"
+        >
+          <div className="example-text">
+            <p>Em Am C D Em</p>
+            <p>Я сижу и смотрю в чужое небо из чужого окна,</p>
+            <p>Am C D Em</p>
+            <p>И не вижу ни одной знакомой звезды.</p>
+            <p>Am C D Em</p>
+            <p>Я ходил по всем дорогам и туда и сюда,</p>
+            <p>Am C D Em</p>
+            <p>Обернулся и не смог разглядеть следы.</p>
+            <p>Припев:</p>
+            <p>Am C D Em</p>
+            <p>Но если есть в кармане пачка сигарет,</p>
+            <p>Am C D Em</p>
+            <p>Значит, всё не так уж плохо на сегодняшний день.</p>
+            <p>Am C D Em</p>
+            <p>И билет на самолёт с серебристым крылом,</p>
+            <p>Am C D Em</p>
+            <p>Что, взлетая, оставляет земле лишь тень.</p>
+          </div>
+
+        </Dialog>
         <textarea
           className="textarea"
           rows="20"

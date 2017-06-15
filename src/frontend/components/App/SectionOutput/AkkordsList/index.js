@@ -1,7 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
-import { Button } from 'react-toolbox/lib/button';
+import { Button, Snackbar } from 'react-toolbox/lib/button';
 import Dialog from 'react-toolbox/lib/dialog';
 // import { Link } from 'react-router-dom';
 import Input from 'react-toolbox/lib/input';
@@ -19,7 +19,18 @@ class AkkordsList extends React.Component {
 
   state = {
     active: false,
-    name: ''
+    name: '',
+    snackbarClick: false
+  };
+
+  handleSnackbarClick = (event, instance) => {
+    console.log('handleSnackbarClick', event, instance);
+    this.setState({ active: false });
+  };
+
+  handleSnackbarTimeout = (event, instance) => {
+    console.log('handleSnackbarClick', event, instance);
+    this.setState({ active: false });
   };
 
   hangleClick = () => {
@@ -32,21 +43,21 @@ class AkkordsList extends React.Component {
 
   hangleClickAdd = () => {
     console.log('TEXT ', this.props.text);
+    console.log('CHORDS ', this.props.akkords);
     $.ajax({
-      url: 'http://dev.0xff.space:8088/api/songs/',
+      url: 'http://localhost:3000/api/songs/',
       contentType: 'application/json',
       type: 'POST',
       data: JSON.stringify({
+        chords: this.props.akkords,
         name: this.state.name,
         text: this.props.text,
         user: '592c336c152b3b18c7d98e83'
       }),
-      success: function (data) {
-        console.log('data ', data);
-      },
       dataType: 'json'
     });
     this.setState({ active: !this.state.active });
+    this.setState({ snackbarClick: !this.state.active });
   };
 
   render () {
@@ -88,6 +99,15 @@ class AkkordsList extends React.Component {
             />
             <Button label="Добавить" onClick={this.hangleClickAdd} />
           </Dialog>
+          <Snackbar
+            action="Dismiss"
+            active={this.state.active}
+            label="Snackbar action cancel"
+            timeout={2000}
+            onClick={this.handleSnackbarClick}
+            onTimeout={this.handleSnackbarTimeout}
+            type="cancel"
+          />
         </div>
       </div>
     );
