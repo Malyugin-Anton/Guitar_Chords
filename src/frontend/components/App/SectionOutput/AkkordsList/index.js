@@ -2,10 +2,8 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import { Button, Snackbar, Dialog } from 'react-toolbox';
-// import { Link } from 'react-router-dom';
 import Input from 'react-toolbox/lib/input';
 import $ from 'jquery';
-//import { addAkkords, addClick } from '../../../../actions/';
 
 class AkkordsList extends React.Component {
   static propTypes = {

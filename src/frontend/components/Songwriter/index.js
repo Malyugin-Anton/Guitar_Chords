@@ -1,5 +1,4 @@
 import React from 'react';
-// import Sidebar from './Sidebar/';
 import MainSong from './MainSong/';
 import { Route, Link } from 'react-router-dom';
 import $ from 'jquery';
