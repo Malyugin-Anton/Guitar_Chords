@@ -1,5 +1,0 @@
-@import "react-toolbox/lib/app_bar/theme.css";
-
-.appBar {
-  background-color: var(--palette-teal-500) !important;
-}

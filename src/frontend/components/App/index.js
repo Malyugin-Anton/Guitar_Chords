@@ -14,7 +14,7 @@ class App extends React.Component {
     return (
       <div>
         <Header />
-        <SectionInput akkords={this.props.akkords} text={this.props.addText} />
+        <SectionInput akkords={this.props.akkords} text={this.props.addText}/>
         <SectionOutput />
       </div>
     );

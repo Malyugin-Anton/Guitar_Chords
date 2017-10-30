@@ -12,10 +12,8 @@ class SectionOutput extends React.Component {
   };
 
   render () {
-    //className={this.props.click ? 'section__output' : 'none'}
-    //className="section__output"
     return (
-      <section className={this.props.click ? 'section__output' : ' none'}>
+      <section id="output" className={this.props.click ? 'section__output' : ' none'}>
         <SliderTone
           tone={this.props.tone}
           click={this.props.click}

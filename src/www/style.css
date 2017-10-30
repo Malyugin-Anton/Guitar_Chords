@@ -17,19 +17,27 @@ body {
 
 /*.........HEADER............*/
 .header {
-  height: 500px;
-  background: url(/images/bg_login.jpg);
+  height: 100vh;
+  background: linear-gradient(150deg, rgba(0, 0, 0, 0.7) 0%, rgba(0, 0, 0, 0.7) 100%),
+  url(./images/bg_login.jpg) no-repeat center;
   background-size: cover;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
 }
 
 .header__text {
   text-align: center;
   color: #fff;
-  padding-top: 11rem;
 }
 
-.header__text h1 {
-  font-size: 3rem;
+.header__title {
+  font-size: 6rem;
+}
+
+.header__subtitle {
+  margin-top: 1rem;
 }
 
 .nav__link {
@@ -38,6 +46,16 @@ body {
 
 .nav__link-nav {
   margin-left: 15px;
+}
+
+.scroll-down {
+  position: absolute;
+  bottom: 30px;
+}
+
+.scroll-down .scroll-down__link span {
+  color: #fff;
+  font-size: 36px;
 }
 
 /*..........SECTION INPUT..............*/
@@ -49,6 +67,15 @@ body {
 section {
   padding: 1rem 0;
 }
+
+.section__input {
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
 .section__input h2 {
   font-size: 3rem;
 }

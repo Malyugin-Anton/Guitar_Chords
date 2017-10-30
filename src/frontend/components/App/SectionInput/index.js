@@ -62,17 +62,19 @@ class SectionInput extends React.Component {
     const regex = /([A-H][b#]?[m]?[\(]?(2|5|6|7|9|11|13|6\/9|7\-5|7\-9|7 \#5|7\#9|7\+5|7\+9|7b5|7b9|7sus2|7sus4|add2|add4|add9|aug|dim|dim 7|m\|maj7|m6|m7|m7b5|m9|m11|m13|maj|maj7|maj9|maj11|maj13|mb5|m|s us|sus2|sus4){0,2}(\/[A-H])?(\))?)(?=\s|\.|\)|-|\/)/g;
     //Получаем массив аккордов
     const newArrAkkords = str.match(regex);
-    //Фильтруем их чтобы не повторялись
-    const unique_arr = unique(newArrAkkords);
-    this.setState({
-      chords_list: unique_arr,
-      click_ok: !this.state.click_ok
-    });
-    //Заносим массив в store
-    this.props.dispatch(addAkkords(unique_arr));
-    this.props.dispatch(addClick(true));
-    this.props.dispatch(addTone(getTone([unique_arr[0]])));
-    //this.props.dispatch(addText(this.state.text));
+    if (!(newArrAkkords === null)){
+      //Фильтруем их чтобы не повторялись
+      const unique_arr = unique(newArrAkkords);
+      this.setState({
+        chords_list: unique_arr,
+        click_ok: !this.state.click_ok
+      });
+      //Заносим массив в store
+      this.props.dispatch(addAkkords(unique_arr));
+      this.props.dispatch(addClick(true));
+      this.props.dispatch(addTone(getTone([unique_arr[0]])));
+      //this.props.dispatch(addText(this.state.text));
+    }
   };
 
   hangleClickClear = () => {
@@ -85,7 +87,6 @@ class SectionInput extends React.Component {
   };
 
   handleTextChange = event => {
-    //this.setState({ text: event.target.value });
     this.props.dispatch(addText(event.target.value));
   };
 
@@ -111,14 +112,14 @@ class SectionInput extends React.Component {
       );
     }
     return (
-      <section className="section__input">
+      <section className="section__input" id="input">
         <h2>Попробуй</h2>
         <p>
           Введите текст песни или аккорды в текстовое поле
           <span className="button__help">
             <IconButton
               icon="help_outline"
-              floating
+              // floating
               onClick={this.handleToggle}
             />
           </span>
@@ -128,7 +129,7 @@ class SectionInput extends React.Component {
           active={this.state.active}
           onEscKeyDown={this.handleToggle}
           onOverlayClick={this.handleToggle}
-          title="Привет текста"
+          title="Пример текста"
         >
           <div className="example-text">
             <p>Em Am C D Em</p>
